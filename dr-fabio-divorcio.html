@@ -279,7 +279,7 @@
       <a href="#" class="btn btn-whatsapp" id="btnFooterWhats">FALAR COM ADVOGADO AGORA</a>
       <a href="tel:+5511984370811" class="btn btn-outline">LIGAR AGORA</a>
     </div>
-    <p class="legal">Fábio Péricles Advogado &amp; Associados | OAB/SP [Número da OAB] &nbsp;·&nbsp; Política de Privacidade | Termos de Uso<br>
+    <p class="legal">Fábio Péricles Advogado &amp; Associados | OAB/SP 42.982 &nbsp;·&nbsp; Política de Privacidade | Termos de Uso<br>
     <a href="https://instagram.com/drfabiopericles" target="_blank" rel="noopener" style="color:var(--primary-light)">@drfabiopericles</a></p>
   </div>
 </footer>
@@ -334,35 +334,40 @@
     }
   });
 
+  // ---- Stub do Google Ads (gtag) e do Meta Pixel (fbq) ----
+  // Isso NÃO baixa nada da rede, só prepara a fila de eventos.
+  // Precisa rodar já, antes dos cliques, senão conversão clicada rápido demais se perde.
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  window.gtag = gtag;
+  gtag('js', new Date());
+  gtag('config', 'AW-18358613567');
+
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[]}(window);
+  fbq('init', '616974489654748');
+  fbq('track', 'PageView');
+
   // ---- Disparo de conversão (Google Ads) ao clicar em ligar/whatsapp ----
   document.querySelectorAll('a[href^="tel:"], a[href*="wa.me"]').forEach(el=>{
     el.addEventListener('click', ()=>{
-      if(typeof gtag === 'function'){
-        gtag('event','conversion',{send_to:'AW-18358613567/m8N_CJTqqdscEL_siLJE', value:0, currency:'BRL'});
-      }
+      gtag('event','conversion',{send_to:'AW-18358613567/m8N_CJTqqdscEL_siLJE', value:0, currency:'BRL'});
     });
   });
 
-  // ---- Carrega Google Ads + Meta Pixel só depois que a página já renderizou ----
-  // (tira esses scripts do caminho crítico de renderização, sem perder o tracking)
+  // ---- Carrega os ARQUIVOS pesados (gtag/js e fbevents.js) só depois do load ----
+  // (é isso que tirava ponto no PageSpeed — o download/parse dos scripts, não a fila em si)
   function loadThirdPartyScripts(){
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    window.gtag = gtag;
-    gtag('js', new Date());
-    gtag('config', 'AW-18358613567');
     const gtagScript = document.createElement('script');
     gtagScript.async = true;
     gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=AW-18358613567';
     document.head.appendChild(gtagScript);
 
-    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-    document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '616974489654748');
-    fbq('track', 'PageView');
+    const fbScript = document.createElement('script');
+    fbScript.async = true;
+    fbScript.src = 'https://connect.facebook.net/en_US/fbevents.js';
+    document.getElementsByTagName('script')[0].parentNode.insertBefore(fbScript, document.getElementsByTagName('script')[0]);
   }
   if(document.readyState === 'complete'){
     loadThirdPartyScripts();
