@@ -14,7 +14,9 @@
 <meta name="theme-color" content="#09090b">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"></noscript>
 <style>
   :root{
     --bg:#09090b; --bg-soft:#0f0f12; --card:rgba(255,255,255,.03); --border:rgba(255,255,255,.08);
@@ -94,7 +96,7 @@
   .see-all{display:block;text-align:center;margin-top:32px;color:var(--primary);font-weight:700;letter-spacing:.04em;font-size:.9rem}
 
   .address{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
-  .address img{border-radius:var(--radius);border:1px solid var(--border)}
+  .address img,.address iframe{border-radius:var(--radius);border:1px solid var(--border);width:100%;max-width:100%}
   .address h2{text-align:left}
   .address p{color:var(--muted);margin-bottom:20px}
   .address .line{color:var(--text);font-weight:600}
@@ -187,7 +189,7 @@
 
   <section>
     <div class="container about">
-      <img src="dr-fabio.png" alt="Dr. Fábio Péricles">
+      <img src="https://res.cloudinary.com/dmf4bqbdd/image/upload/v1785758574/Captura_de_Tela_2026-08-03_a%CC%80s_09.02.31_ejzoz4.png" alt="Dr. Fábio Péricles" width="340" height="400" loading="lazy" decoding="async">
       <div>
         <h2>Sobre o Escritório Fábio Péricles Advogado &amp; Associados</h2>
         <p>Liderado pelo Dr. Fábio Péricles, nosso escritório é pautado pela ética, discrição e atendimento humanizado. Entendemos que um divórcio é um momento delicado para o cliente e sua família.</p>
@@ -236,9 +238,11 @@
         <p class="line">Vila Homero Thon, Santo André - SP, 09111-340</p>
         <p style="margin-top:16px">📍 Localizado no Century Plaza Business</p>
       </div>
-      <a href="https://www.google.com/maps/place/Rua+Giovanni+Battista+Pirelli,+271+-+Vila+Homero+Thon,+Santo+Andr%C3%A9+-+SP,+09111-340" target="_blank" rel="noopener">
-        <img src="mapa-escritorio.png" alt="Localização do escritório Fábio Péricles em Santo André">
-      </a>
+      <iframe
+        src="https://www.google.com/maps?q=Rua+Giovanni+Battista+Pirelli,+271+-+Vila+Homero+Thon,+Santo+Andr%C3%A9+-+SP,+09111-340&output=embed"
+        width="540" height="400" style="border:0;border-radius:var(--radius)" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Localização do escritório Fábio Péricles em Santo André"></iframe>
     </div>
   </section>
 
@@ -338,27 +342,35 @@
       }
     });
   });
+
+  // ---- Carrega Google Ads + Meta Pixel só depois que a página já renderizou ----
+  // (tira esses scripts do caminho crítico de renderização, sem perder o tracking)
+  function loadThirdPartyScripts(){
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', 'AW-18358613567');
+    const gtagScript = document.createElement('script');
+    gtagScript.async = true;
+    gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=AW-18358613567';
+    document.head.appendChild(gtagScript);
+
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '616974489654748');
+    fbq('track', 'PageView');
+  }
+  if(document.readyState === 'complete'){
+    loadThirdPartyScripts();
+  } else {
+    window.addEventListener('load', loadThirdPartyScripts);
+  }
 </script>
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18358613567"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'AW-18358613567');
-</script>
-
-<!-- Meta Pixel -->
-<script>
-  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-  document,'script','https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '616974489654748');
-  fbq('track', 'PageView');
-</script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=616974489654748&ev=PageView&noscript=1"/></noscript>
 
 </body>
