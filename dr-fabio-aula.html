@@ -460,7 +460,7 @@ src="https://www.facebook.com/tr?id=616974489654748&ev=PageView&noscript=1"></no
   document.querySelectorAll('.js-cta').forEach(function (btn) {
     btn.addEventListener('click', function () {
       if (typeof fbq === 'function') {
-        fbq('track', 'Lead');
+        fbq('track', 'Contact');
       }
       if (typeof gtag === 'function' && GOOGLE_ADS_CONVERSION_LABEL) {
         gtag('event', 'conversion', {
