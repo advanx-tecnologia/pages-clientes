@@ -245,14 +245,27 @@
 </style>
 
 <!-- ===================== META PIXEL + GOOGLE ADS ===================== -->
-<!-- fbq() e gtag() ficam prontos desde já (não custa rede, só enfileira eventos). -->
-<!-- Os arquivos pesados (fbevents.js e gtag/js) só baixam depois do load da página, -->
-<!-- pra não competir com o carregamento inicial e não travar a LCP. -->
+<!-- O Pixel e o Google Ads carregam imediatamente para não perder conversões -->
+<!-- quando o usuário abre o WhatsApp antes do carregamento completo da página. -->
 <script>
-  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[]}(window);
-  fbq('init', '616974489654748');
+  !function(f,b,e,v,n,t,s){
+    if(f.fbq)return;
+    n=f.fbq=function(){
+      n.callMethod ? n.callMethod.apply(n,arguments) : n.queue.push(arguments);
+    };
+    if(!f._fbq)f._fbq=n;
+    n.push=n;
+    n.loaded=true;
+    n.version='2.0';
+    n.queue=[];
+    t=b.createElement(e);
+    t.async=true;
+    t.src=v;
+    s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s);
+  }(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
+  fbq('init', '709702676793866');
   fbq('track', 'PageView');
 
   window.dataLayer = window.dataLayer || [];
@@ -260,25 +273,13 @@
   gtag('js', new Date());
   gtag('config', 'AW-11111983031');
 
-  function loadThirdPartyScripts(){
-    var fbScript = document.createElement('script');
-    fbScript.async = true;
-    fbScript.src = 'https://connect.facebook.net/en_US/fbevents.js';
-    document.head.appendChild(fbScript);
-
-    var gtagScript = document.createElement('script');
-    gtagScript.async = true;
-    gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=AW-11111983031';
-    document.head.appendChild(gtagScript);
-  }
-  if(document.readyState === 'complete'){
-    loadThirdPartyScripts();
-  } else {
-    window.addEventListener('load', loadThirdPartyScripts);
-  }
+  var gtagScript = document.createElement('script');
+  gtagScript.async = true;
+  gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=AW-11111983031';
+  document.head.appendChild(gtagScript);
 </script>
 <noscript><img height="1" width="1" style="display:none" alt=""
-src="https://www.facebook.com/tr?id=616974489654748&ev=PageView&noscript=1"></noscript>
+src="https://www.facebook.com/tr?id=709702676793866&ev=PageView&noscript=1"></noscript>
 
 </head>
 <body>
@@ -460,7 +461,10 @@ src="https://www.facebook.com/tr?id=616974489654748&ev=PageView&noscript=1"></no
   document.querySelectorAll('.js-cta').forEach(function (btn) {
     btn.addEventListener('click', function () {
       if (typeof fbq === 'function') {
-        fbq('track', 'Contact');
+        fbq('track', 'Contact', {
+          content_name: 'Entrada no grupo da aula',
+          contact_method: 'WhatsApp'
+        });
       }
       if (typeof gtag === 'function' && GOOGLE_ADS_CONVERSION_LABEL) {
         gtag('event', 'conversion', {
