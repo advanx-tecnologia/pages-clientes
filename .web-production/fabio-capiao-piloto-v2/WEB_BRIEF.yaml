@@ -1,0 +1,46 @@
+project:
+  slug: fabio-capiao-piloto-v2
+  owner: cliente
+  client_name: Fábio Péricles Advogado & Associados
+  type: landing-page
+  repository: advanx-tecnologia/pages-clientes
+  branch: feat/fabio-capiao-piloto-v2
+  route: /fabio-capiao-piloto-v2/
+  public_url: ""
+  mutable_source: fabio-capiao-piloto-v2/index.html
+  immutable_reference: fabio-capiao.html
+objective:
+  primary: captar contatos interessados em usucapião e regularização imobiliária
+  conversion: clique qualificado para WhatsApp
+  audience: pessoas com imóvel sem registro definitivo
+  traffic_source: preview controlada
+  awareness: problem-aware
+content:
+  offer: análise jurídica individual para identificar o procedimento compatível com o imóvel
+  proof_policy: não inventar resultados, números, depoimentos ou garantias
+  copy_status: pilot-approved
+brand:
+  source: https://fpericlesadv.com.br/
+  logo: fabio-capiao-piloto-v2/assets/logo-fabio-pericles.webp
+  photo: fabio-capiao-piloto-v2/assets/fabio-pericles.webp
+  palette: ["#0D0D0D", "#F4F0E7", "#CBA65E", "#22211E"]
+integrations:
+  tracking: dataLayer local no piloto
+  crm: none
+  calendar: none
+  whatsapp: "5511984370811"
+constraints:
+  - não alterar fabio-capiao.html
+  - não mesclar nem publicar em produção sem autorização
+  - usar a logo oficial do site do escritório
+  - não exibir OAB sem confirmação documental
+  - não prometer prazo, resultado ou viabilidade
+acceptance:
+  - logo oficial visível no cabeçalho, institucional e rodapé
+  - HTML e JavaScript válidos
+  - zero erro de console e overflow horizontal
+  - axe sem violações sérias ou críticas
+  - Lighthouse mobile performance >= 95
+  - accessibility = 100
+  - best practices >= 95
+  - SEO >= 95
