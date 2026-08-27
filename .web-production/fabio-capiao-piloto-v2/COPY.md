@@ -10,11 +10,11 @@ O imóvel pode ter uma história de compra, posse e cuidado. A análise jurídic
 
 ## Hero
 
-**H1:** Seu imóvel pode ter uma história. Mas precisa ter registro.
+**H1:** Seu imóvel está fora do seu nome? Entenda qual caminho jurídico pode ser adequado.
 
-**Subheadline:** Contrato de gaveta, recibos e anos de posse podem contar parte do caminho. A análise jurídica mostra qual procedimento pode colocar o imóvel em seu nome.
+**Subheadline:** O Dr. Fábio Péricles analisa casos de usucapião, adjudicação compulsória e outras formas de regularização imobiliária, conforme os documentos e as características de cada imóvel.
 
-**CTA:** Solicitar análise do caso
+**CTA:** Quero explicar meu caso
 
 ## Seções
 

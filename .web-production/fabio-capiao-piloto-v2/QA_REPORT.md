@@ -44,9 +44,9 @@ Mediana de 3 execuções:
 | Acessibilidade | 100 | 100 |
 | Boas práticas | 96 | ≥95 |
 | SEO | 100 | ≥95 |
-| LCP | 907 ms | ≤2500 ms |
+| LCP | 903 ms | ≤2500 ms |
 | CLS | 0 | ≤0,1 |
-| TBT | 28 ms | ≤200 ms |
+| TBT | 7,5 ms | ≤200 ms |
 
 ## Revisão visual
 
@@ -57,6 +57,14 @@ A primeira versão apresentou logo pequena e card do hero com peso excessivo. Fo
 3. remoção do selo decorativo.
 
 A captura final confirmou logo oficial legível, CTA acima da dobra, conteúdo completo e ausência de quebra bloqueadora.
+
+## Revisão especializada
+
+- copy: hero tornou o problema e a atuação jurídica mais explícitos;
+- design: logo vertical exige escala mínima, já aplicada; a proposta de azul e terracota não foi adotada porque a marca oficial do cliente usa preto e dourado;
+- arquitetura: os cinco CTAs agora registram `cta_location` sem PII e preservam a navegação nativa.
+
+Todos os gates foram repetidos após essas alterações.
 
 ## Resultado
 
